@@ -5,16 +5,16 @@ class Solution(object):
         :rtype: bool
         """
         stack = []
-        for i in s:
-            if i == ')' and (len(stack) == 0 or stack.pop() != '('):
-                return False
-            if i == '}' and (len(stack) == 0 or stack.pop() != '{'):
-                return False
-            if i == ']' and (len(stack) == 0 or stack.pop() != '['):
-                return False
-            if i == '(' or i == '{' or i == '[':
-                stack.append(i)
-                
-        return len(stack) == 0
+        dic = {')': '(', ']': '[', '}': '{'};
+        
+        for char in s:
+            if char in dic:
+                topElement = stack.pop() if stack else '^'
+                if topElement != dic[char]:
+                    return False
+            else:
+                stack.append(char)
+             
+        return not stack
             
             
