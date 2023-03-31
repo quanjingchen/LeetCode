@@ -4,15 +4,12 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """            
-        ans = {}
+        ans = collections.defaultdict(list)
         for str in strs:
             count = [0] * 26
             for c in str:
                 count[ord(c) - ord('a')] += 1
-            if tuple(count) in ans:
-                ans[tuple(count)].append(str)
-            else:
-                ans[tuple(count)] = [str]
+            ans[tuple(count)].append(str)
         return ans.values()
             
 
