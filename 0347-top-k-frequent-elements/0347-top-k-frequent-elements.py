@@ -1,12 +1,6 @@
-import heapq
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        #step 1: build hash map: character and how often it appears
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+                #step 1: build hash map: character and how often it appears
         dic = {}
         for num in nums:
             if num in dic:
@@ -20,13 +14,4 @@ class Solution(object):
                 heapq.heappush(maxHeap, (-dic[key], key))
 
         #step 3: return the top k element from the minHeap
-        ans = []
-        for _ in range(k):
-            ans.append(heapq.heappop(maxHeap)[1])
-        return ans
-            
-        
-        
-        
-            
-        
+        return [heapq.heappop(maxHeap)[1] for _ in range(k)]
