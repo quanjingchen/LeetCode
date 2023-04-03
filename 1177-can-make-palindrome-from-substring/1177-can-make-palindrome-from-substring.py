@@ -12,16 +12,14 @@ class Solution(object):
             new = dp[i - 1][:]
             new[ord(s[i - 1]) - ord('a')] += 1
             dp.append(new)
-        #step 2: 
+        #step 2: check if each query can be turned into a pallindrome
         ans =[]
         for l, h, k in queries:
             oddN = 0
             freq1 = dp[h + 1] 
             freq2 = dp[l]
             freq= [freq1[i] - freq2[i] for i in range(len(freq1))]
-            for f in freq:
-                if f % 2 != 0:
-                    oddN += 1
+            oddN = sum(f % 2 != 0 for f in freq)
             if (h - l) % 2 != 0:
                 ans.append(oddN <= k * 2)
             else:
