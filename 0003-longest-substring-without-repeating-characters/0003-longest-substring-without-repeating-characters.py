@@ -1,20 +1,14 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         left = 0
-        dic = set()
+        dic = {}
         length = 0
         ans = 0
         for i, char in enumerate(s):
             if char in dic:
-                while (s[left] != char):
-                    dic.remove(s[left])
-                    left += 1
-                    length -= 1
-                left += 1
-                length -= 1
-            dic.add(char)
-            length += 1
-            ans = max(length, ans)
+                left = max(dic[char] + 1, left)
+            dic[char] = i
+            ans = max(i - left + 1, ans)
         return ans
                 
                 
