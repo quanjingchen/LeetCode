@@ -14,8 +14,7 @@ class Solution:
                 length -= 1
             dic.add(char)
             length += 1
-            if length > ans:
-                ans = length
+            ans = max(length, ans)
         return ans
                 
                 
