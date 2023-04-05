@@ -1,28 +1,15 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-
-        dic={}
-        
-        
-        for index, i in enumerate(nums):
-            if i in dic:
-                dic[i].append(index)
-            else:
-                dic[i]=[index]
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        freq = {}
+        ans = []
+        for i, num in enumerate(nums):
+            if num not in freq:
+                freq[num] = []
+            freq[num].append(i)
                 
-        
-        
-        for index, i in enumerate(nums):
-            b = target - i
-            if b == i and b in dic and len(dic[i]) > 1:
-                return [dic[i][0], dic[i][1]]
-            elif b!= i and b in dic:
-                return [dic[i][0], dic[b][0]]
-                
-                
-            
+        for i, num in enumerate(nums):
+            if target - num in freq:
+                for j in freq[target - num]:
+                    if j != i:
+                        ans.append([i, j])
+        return ans[0]        
