@@ -17,6 +17,6 @@ class Solution:
             prev = slow
             slow = slow.next
             fast = fast.next
-        prev.next = slow.next
+        prev.next = prev.next.next
         return dummy.next
         
