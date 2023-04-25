@@ -10,7 +10,7 @@ class Solution:
         counter = 0
         def traverseInorder(node):
             nonlocal res, counter
-            if not node:
+            if res or not node:
                 return
             traverseInorder(node.left)
             counter += 1
