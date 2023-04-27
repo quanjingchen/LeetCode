@@ -8,17 +8,14 @@ class Solution:
                 paths.append(path[:])
             if target <= 0:
                 return
-            path.append(candidates[index])
+            
             
             for i in range(index, len(candidates)):
-                if target - candidates[i] < 0:
-                    break
-                dfs(i, target - candidates[index])
-                
-            path.pop()
+                path.append(candidates[i])
+                dfs(i, target - candidates[i])
+                path.pop()
             
-        for i in range(len(candidates)):
-            dfs(i, target)       
+        dfs(0, target)       
             
         return paths
                 
