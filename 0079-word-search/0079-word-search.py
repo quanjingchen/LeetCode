@@ -6,20 +6,27 @@ class Solution:
         visited = [[0 for _ in range(cols)] for _ in range(rows)]
         
         def dfs(index, r, c):
-
-            visited[r][c] = True       
-            if board[r][c] == word[index]:
-                if index == len(word) - 1:
-                    return True
-                for neighbor in neighbours:
-                    if not isValid(r - neighbor[0], c - neighbor[1], rows, cols, visited):
-                        continue
-                    if dfs(index + 1, r - neighbor[0], c - neighbor[1]):
-                        return True
+            # check the bottom case
+            if index == len(word):
+                return True       
+            # check the boundaries:
+            if not isValid(r , c) or board[r][c] != word[index]:
+                return False 
+            # mark the current cell
+            visited[r][c] = True  
+            
+            # explore the neighbours:
+            ret = False
+            for neighbor in neighbours:
+                ret = dfs(index + 1, r - neighbor[0], c - neighbor[1])
+                if ret:
+                    break
+                    
+            # clean up and return the result
             visited[r][c] = False            
-            return False
+            return ret
         
-        def isValid(x, y, rows, cols, visited):
+        def isValid(x, y):
             if x < 0 or y < 0 or x >= rows or y >= cols:
                 return False
             if visited[x][y] == True:
