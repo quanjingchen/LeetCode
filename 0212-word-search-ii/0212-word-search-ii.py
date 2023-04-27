@@ -28,8 +28,10 @@ class Solution:
                 paths.append(child.word)
                 child.word = None  # Remove the word to prevent duplicates
             
+            #remove the leaf node
             if len(child.children) == 0:
                 node.children.pop(char)
+                return
 
             board[r][c] = '#'  # Mark the cell as visited
             for nr, nc in [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]:
