@@ -27,6 +27,9 @@ class Solution:
             if child.word is not None:
                 paths.append(child.word)
                 child.word = None  # Remove the word to prevent duplicates
+            
+            if len(child.children) == 0:
+                node.children.pop(char)
 
             board[r][c] = '#'  # Mark the cell as visited
             for nr, nc in [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]:
@@ -34,8 +37,7 @@ class Solution:
                     dfs(nr, nc, child)
             board[r][c] = char  # Restore the cell
             
-            if len(child.children) == 0:
-                node.children.pop(char)
+
                 
 
         paths = []
