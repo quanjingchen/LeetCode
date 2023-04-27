@@ -29,6 +29,8 @@ class WordDictionary:
                     find = True
                 return
             for child in node.children:
+                if find:
+                    return
                 if child == word[index] or word[index] == '.':
                     dfs(node.children[child], index + 1)
         dfs(node, 0)
