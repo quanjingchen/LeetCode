@@ -17,7 +17,7 @@ class Solution:
                 # explore the neighbours:
                 for neighbor in neighbours:
                     if dfs(index + 1, r + neighbor[0], c + neighbor[1]):
-                        visited[r][c] = False  # Reset visited cell when found
+                        #visited[r][c] = False  # Reset visited cell when found
                         return True
                 visited[r][c] = False  
             return False
