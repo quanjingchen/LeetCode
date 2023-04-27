@@ -26,15 +26,15 @@ class WordDictionary:
             nonlocal find
             if index == len(word):
                 if node.is_end == True:
-                    find = True
-                return
+                    return True
+                return False
             for child in node.children:
-                if find:
-                    return
                 if child == word[index] or word[index] == '.':
-                    dfs(node.children[child], index + 1)
-        dfs(node, 0)
-        return find
+                    if dfs(node.children[child], index + 1):
+                        return True
+            return False
+        
+        return dfs(node, 0)
             
                 
             
