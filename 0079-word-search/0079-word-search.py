@@ -9,6 +9,7 @@ class Solution:
             # check the bottom case
             if index == len(word):
                 return True       
+
             # check the boundaries:
             if not isValid(r , c) or board[r][c] != word[index]:
                 return False 
