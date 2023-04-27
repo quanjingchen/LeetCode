@@ -33,6 +33,7 @@ class Solution:
                 if 0 <= nr < rows and 0 <= nc < cols:
                     dfs(nr, nc, child)
             board[r][c] = char  # Restore the cell
+            
             if len(child.children) == 0:
                 node.children.pop(char)
                 
